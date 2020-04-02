@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="919301433582-d8qn1m1jjfcoinjr353ok8sjnq7d9k8h.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>FancyToDo By Rerun</title>
+</head>
+<body>
+    <div class="box is-vcentered is-centered is-half" id="landing-page">
+        <h2 class="title">DiRumahAja!</h2>
+        <div class="form-group">
+            <label for="e-mail">Email</label>
+            <input type="email" placeholder="e.g. something@mail.com" id="e-mail">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" placeholder="***********"" id="password">
+        </div>
+        <button class="btn-secondary">Login</button>
+        <p>Don't have an account? Click here to register.</p>
+        <p>Or sign in through Google:</p>
+        <br>
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
+    <!-- <div id="register-page">
+        <h3 class="title">ToDo by Rerun</h3>
+        <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com"">
+            </div>
+        </div>
+          
+        <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" placeholder="512412415">
+            </div>
+        </div>
+        <button class="button is-primary is-rounded">Register Now!</button>
+    </div> -->
+    <div id="dashboard">
+        <div id="create-form">
+
+        </div>
+        <div id="task-table">
+            
+        </div>
+    </div>
+    <div id="edit-page">
+
+    </div>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
