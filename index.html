@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="478264750363-9u5b7bd483nggk54ig3uk9us34tfc810.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <title>DiRumahAja!</title>
+</head>
+<body>
+    <div class="alert alert-success" id="success"></div>
+    <div class="alert alert-danger" id="alert"></div>
+    <div class="sign-form" id="landing-page">
+        <div class="form-box">
+            <h2>DiRumahAja!</h2>
+            <p>By: Kelompok 2</p>
+            <form onsubmit="login(event)" id="login">
+                <div class="form-group">
+                    <label for="email-login">Email</label>
+                    <input type="email" placeholder="e.g. something@mail.com" id="email-login">
+                </div>
+                <div class="form-group">
+                    <label for="password-login">Password</label>
+                    <input type="password" placeholder="***********" id="password-login">
+                </div>
+            </form>
+            <button onclick="login(event)" class="btn-secondary" value="Register Now!">Login</button>
+            <p>Don't have an account? Click below to register.</p>
+            <button onclick="showRegister(event)" class="btn-success">Register</button>
+            <p>Or sign in through Google:</p>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <button onclick="showDashboard()" class="btn-danger">Test show dashboard</button>
+        </div>
+    </div>
+    <div class="sign-form" id="register-page">
+        <div class="form-box">
+            <h2 class="title">DiRumahAja!</h2>
+            <p>By: Kelompok 2</p>
+            <form id="register">
+                <div class="form-group">
+                    <label for="email-register">Email</label>
+                    <input type="email" placeholder="e.g. something@mail.com" id="email-register">
+                </div>
+                <div class="form-group">
+                    <label for="password-register">Password</label>
+                    <input type="password" placeholder="***********" id="password-register">
+                </div>
+            </form>
+            <button onclick="register(event)" class="btn-success" value="Register Now!">Register Now!</button>
+            <p>Or login:</p>
+            <button onclick="showLandingPage()" class="btn-secondary">Login</button>
+        </div>
+    </div>
+    <div class="sign-form" id="dashboard">
+        <nav class="border fixed">
+            <div class="nav-brand">
+              <h3>DiRumahAja!</h3>
+            </div>
+            <div class="collapsible">
+              <input id="collapsible2" type="checkbox" name="collapsible2">
+              <button>
+                <label for="collapsible2">
+                  <div class="bar1"></div>
+                  <div class="bar2"></div>
+                  <div class="bar3"></div>
+                </label>
+              </button>
+              <div class="collapsible-body">
+                <ul class="inline">
+                  <li><a onclick="showFav()">Favorites</a></li>
+                  <li><a onclick="generate()">Generate again!</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <div class="rec-box">
+            <div id="favorites">
+                <p>Fav 1</p>
+                <p>Fav 2</p>
+                <p>Fav 3</p>
+            </div>
+            <div id="generated">
+
+            </div>
+            <div id="generator">
+                <button class="btn-alert">Generate recommendations!</button>
+                <button class="btn-success">Add to Favorites</button>
+            </div>
+        </div>
+    </div>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous">
+    </script>
+    <script src="main.js"></script>
+</body>
