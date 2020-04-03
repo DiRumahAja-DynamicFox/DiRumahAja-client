@@ -1,0 +1,48 @@
+.sign-form {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.form-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50vw;
+    /* height: 95vw; */
+    z-index: 3;
+    padding: 25px;
+    margin: auto;
+    margin-bottom: 5vw;
+    background-color: white;
+    color: black;
+    /* padding: 20px; */
+    border: none;
+    border-radius: 3px;
+    /* position: relative; */
+    height: auto;
+}
+
+.rec-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 50vw;
+    /* height: 95vw; */
+    z-index: 3;
+    padding: 25px;
+    margin: auto;
+    margin-top: 15vw;
+    margin-bottom: 10vw;
+    background-color: white;
+    color: black;
+    /* padding: 20px; */
+    border: none;
+    border-radius: 3px;
+    /* position: relative; */
+    height: auto;
+}
