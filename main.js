@@ -41,6 +41,7 @@ function register(event) {
             $("#success").slideUp(500);
             $('#success').empty()
         })
+        showLandingPage()
     }).fail(function(err) {
         console.log(err, 'it is an error')
         err.responseJSON.forEach(el => {
@@ -72,13 +73,15 @@ function showRegister(event) {
     $('#dashboard').hide()
 }
 
-function showFav() {
+function showFav(event) {
+    event.preventDefault()
     $('#favorites').show()
     $('#generated').hide()
     $('#generator').hide()
 }
 
-function generate() {
+function generate(event) {
+    event.preventDefault()
     $('#favorites').hide()
     $('#generated').show(function() {
         $.ajax({

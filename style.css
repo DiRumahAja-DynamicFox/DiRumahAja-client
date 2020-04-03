@@ -46,3 +46,8 @@
     /* position: relative; */
     height: auto;
 }
+
+.alert-box {
+  position: fixed;
+  z-index: 10;
+}
