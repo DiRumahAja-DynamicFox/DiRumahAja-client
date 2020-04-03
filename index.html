@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>DiRumahAja!</title>
 </head>
+
 <body>
     <div class="alert alert-success" id="success"></div>
     <div class="alert alert-danger" id="alert"></div>
@@ -57,26 +59,26 @@
     <div class="sign-form" id="dashboard">
         <nav class="border fixed">
             <div class="nav-brand">
-              <h3>DiRumahAja!</h3>
+                <h3>DiRumahAja!</h3>
             </div>
             <div class="collapsible">
-              <input id="collapsible2" type="checkbox" name="collapsible2">
-              <button>
+                <input id="collapsible2" type="checkbox" name="collapsible2">
+                <button>
                 <label for="collapsible2">
                   <div class="bar1"></div>
                   <div class="bar2"></div>
                   <div class="bar3"></div>
                 </label>
               </button>
-              <div class="collapsible-body">
-                <ul class="inline">
-                  <li><a onclick="showFav()" href="#">Favorites</a></li>
-                  <li><a onclick="generate()" href="#">Generate again!</a></li>
-                  <li><a onclick="logout(event)" href="#">Logout</a></li>
-                </ul>
-              </div>
+                <div class="collapsible-body">
+                    <ul class="inline">
+                        <li><a onclick="showFav()" href="#">Favorites</a></li>
+                        <li><a onclick="generate()" href="#">Generate again!</a></li>
+                        <li><a onclick="logout(event)" href="#">Logout</a></li>
+                    </ul>
+                </div>
             </div>
-          </nav>
+        </nav>
         <div class="rec-box">
             <div id="favorites">
                 <p>Fav 1</p>
@@ -88,6 +90,12 @@
                 <p id="reddit"></p>
                 <h4>Still bored? Try this recipe:</h4>
                 <p id="recipe"></p>
+                <p id="recipe-img"></p>
+                <p id="recipe-ingredients"></p>
+                <h4>Still bored? Try this Music:</h4>
+                <p id="music"></p>
+                <p id="music-preview"></p>
+                <p id="music-src"></p>
             </div>
             <div id="generator">
                 <button class="btn-alert">Generate recommendations!</button>
@@ -95,10 +103,7 @@
             </div>
         </div>
     </div>
-    <script
-        src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous">
     </script>
     <script src="main.js"></script>
 </body>
