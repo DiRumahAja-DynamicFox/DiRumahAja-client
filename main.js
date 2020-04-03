@@ -72,13 +72,15 @@ function showRegister(event) {
     $('#dashboard').hide()
 }
 
-function showFav() {
+function showFav(event) {
+    event.preventDefault()
     $('#favorites').show()
     $('#generated').hide()
     $('#generator').hide()
 }
 
-function generate() {
+function generate(event) {
+    event.preventDefault()
     $('#favorites').hide()
     $('#generated').show(function() {
         $.ajax({

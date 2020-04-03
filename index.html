@@ -72,9 +72,9 @@
               </button>
                 <div class="collapsible-body">
                     <ul class="inline">
-                        <li><a onclick="showFav()" href="#">Favorites</a></li>
-                        <li><a onclick="generate()" href="#">Generate again!</a></li>
-                        <li><a onclick="logout(event)" href="#">Logout</a></li>
+                        <li><a onclick="showFav(event)" href="">Favorites</a></li>
+                        <li><a onclick="generate(event)" href="">Generate again!</a></li>
+                        <li><a onclick="logout(event)" href="">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -98,7 +98,7 @@
                 <p id="music-src"></p>
             </div>
             <div id="generator">
-                <button class="btn-alert">Generate recommendations!</button>
+                <button onclick="generate(event)" class="btn-alert">Generate recommendations!</button>
                 <button class="btn-success">Add to Favorites</button>
             </div>
         </div>
