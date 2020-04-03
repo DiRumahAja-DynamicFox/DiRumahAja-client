@@ -88,6 +88,14 @@ function generate() {
             $('#meme').empty()
             $('#meme').append(` <img src="${response.memedata.url}"> `)
         })
+        $.ajax({
+            method: 'GET',
+            url: `${localhost}/recipe/1`
+        }).done(response => {
+            console.log(response.data)
+            $('#recipe').empty()
+            $('#recipe').append(` ${response.data}`)
+        })
         console.log('a')
         console.log('b')
         console.log('c')
@@ -139,6 +147,11 @@ function onSignIn(googleUser) {
 
 function logout(event) {
     event.preventDefault()
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+
     localStorage.clear()
     showLandingPage()
 }
