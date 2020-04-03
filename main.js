@@ -133,40 +133,63 @@ function generate() {
     console.log('e')
 }
 
+// function onSignIn(googleUser) {
+//     // Useful data for your client-side scripts:
+//     var profile = googleUser.getBasicProfile();
+//     // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+//     // console.log('Full Name: ' + profile.getName());
+//     // console.log('Given Name: ' + profile.getGivenName());
+//     // console.log('Family Name: ' + profile.getFamilyName());
+//     // console.log("Image URL: " + profile.getImageUrl());
+//     // console.log("Email: " + profile.getEmail());
+
+//     // The ID token you need to pass to your backend:
+//     var id_token = googleUser.getAuthResponse().id_token;
+//     // console.log("ID Token: " + id_token);
+
+//     $.ajax({
+//             method: "POST",
+//             url: `${localhost}/users/googleSign`,
+//             data: {
+//                 id_token
+//             }
+//         }).done(function(response) {
+//             console.log({
+//                 response: response,
+//                 msg: "Sent google token to server. Received server token."
+//             })
+//             localStorage.setItem("token", response.access_token)
+//             showDashboard()
+//         })
+//         .fail(function(err) {
+//             console.log(err, "<= It's an error on google signin")
+//             err.responseJSON.forEach(el => {
+//                 $('#alert').append(`${el}<br>`)
+//                 $('#alert').fadeTo(2000, 500).slideUp(500, function() {
+//                     $("#alert").slideUp(500);
+//                     $('#alert').empty()
+//                 })
+//             })
+//         })
+// }
+
 function onSignIn(googleUser) {
-    // Useful data for your client-side scripts:
-    var profile = googleUser.getBasicProfile();
-    // console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-    // console.log('Full Name: ' + profile.getName());
-    // console.log('Given Name: ' + profile.getGivenName());
-    // console.log('Family Name: ' + profile.getFamilyName());
-    // console.log("Image URL: " + profile.getImageUrl());
-    // console.log("Email: " + profile.getEmail());
-
-    // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
-    // console.log("ID Token: " + id_token);
-
+    console.log('satu kali')
     $.ajax({
-            method: "POST",
-            url: `${localhost}/users/googleSign`
-        }).done(function(response) {
-            console.log({
-                response: response,
-                msg: "Sent google token to server. Received server token."
-            })
-            localStorage.setItem("token", response.token)
+        method: 'POST',
+        url: localhost + '/users/googleSign',
+        data: {
+            id_token
+        }
+    })
+        .done(data => {
+            console.log(data)
+            localStorage.setItem('token', data.token)
             showDashboard()
         })
-        .fail(function(err) {
-            console.log(err, "<= It's an error on google signin")
-            err.responseJSON.forEach(el => {
-                $('#alert').append(`${el}<br>`)
-                $('#alert').fadeTo(2000, 500).slideUp(500, function() {
-                    $("#alert").slideUp(500);
-                    $('#alert').empty()
-                })
-            })
+        .fail(err => {
+            console.log(err.responseJSON, 'error')
         })
 }
 
