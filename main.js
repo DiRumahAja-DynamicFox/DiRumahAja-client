@@ -11,6 +11,7 @@ function login(event) {
             }
         }).done(response => {
             localStorage.setItem('token', response.access_token)
+            showDashboard()
         })
         .fail(function(err) {
             console.log(err, 'it is an error')
@@ -82,7 +83,10 @@ function generate() {
     $('#generated').show(function() {
         $.ajax({
             method: 'GET',
-            url: `${localhost}/meme`
+            url: `${localhost}/meme`, 
+            headers: {
+                access_token: localStorage.token
+            }
         }).done(response => {
             console.log(response.data)
             $('#meme').empty()
@@ -90,7 +94,10 @@ function generate() {
         })
         $.ajax({
             method: 'GET',
-            url: `${localhost}/recipe`
+            url: `${localhost}/recipe`, 
+            headers: {
+                access_token: localStorage.token
+            }
         }).done(response => {
             console.log(response.data)
             $('#recipe').empty()
@@ -104,7 +111,10 @@ function generate() {
         })
         $.ajax({
             method: 'GET',
-            url: `${localhost}/music`
+            url: `${localhost}/music`, 
+            headers: {
+                access_token: localStorage.token
+            }
         }).done(response => {
             console.log(response.data)
             $('#music').empty()
@@ -139,10 +149,7 @@ function onSignIn(googleUser) {
 
     $.ajax({
             method: "POST",
-            url: `${localhost}/users/googleSign`,
-            headers: {
-                token: id_token
-            }
+            url: `${localhost}/users/googleSign`
         }).done(function(response) {
             console.log({
                 response: response,
@@ -161,6 +168,12 @@ function onSignIn(googleUser) {
                 })
             })
         })
+}
+
+function testUser(event) {
+    event.preventDefault()
+    localStorage.setItem('token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJiQGIuY29tIiwiaWF0IjoxNTg1ODg5MzcwfQ.MBCno3sXBRU9zGzkG5z8Yw7RrD59BJqqkP8fDbmtbN4')
+    showDashboard()
 }
 
 function logout(event) {
