@@ -3,25 +3,25 @@ const localhost = 'http://localhost:3000'
 function login(event) {
     event.preventDefault()
     $.ajax({
-        method: 'POST',
-        url: `${localhost}/users/login`,
-        data: {
-            email: $('#email-login').val(),
-            password: $('#password-login').val()
-        }
-    }).done(response => {
-        localStorage.setItem('token', response.access_token)
-    })
-    .fail(function(err) {
-        console.log(err, 'it is an error')
-        err.responseJSON.forEach(el => {
-            $('#alert').append(`${el}<br>`)
-            $('#alert').fadeTo(2000, 500).slideUp(500, function(){
-                $("#alert").slideUp(500);
-                $('#alert').empty()
+            method: 'POST',
+            url: `${localhost}/users/login`,
+            data: {
+                email: $('#email-login').val(),
+                password: $('#password-login').val()
+            }
+        }).done(response => {
+            localStorage.setItem('token', response.access_token)
+        })
+        .fail(function(err) {
+            console.log(err, 'it is an error')
+            err.responseJSON.forEach(el => {
+                $('#alert').append(`${el}<br>`)
+                $('#alert').fadeTo(2000, 500).slideUp(500, function() {
+                    $("#alert").slideUp(500);
+                    $('#alert').empty()
+                })
             })
         })
-    })
 }
 
 function register(event) {
@@ -36,15 +36,15 @@ function register(event) {
     }).done(response => {
         // localStorage.setItem('token', )
         $('#success').append(`${response.email} ${response.msg}`)
-            $('#success').fadeTo(2000, 500).slideUp(500, function(){
-                $("#success").slideUp(500);
-                $('#success').empty()
-            })
+        $('#success').fadeTo(2000, 500).slideUp(500, function() {
+            $("#success").slideUp(500);
+            $('#success').empty()
+        })
     }).fail(function(err) {
         console.log(err, 'it is an error')
         err.responseJSON.forEach(el => {
             $('#alert').append(`${el}<br>`)
-            $('#alert').fadeTo(2000, 500).slideUp(500, function(){
+            $('#alert').fadeTo(2000, 500).slideUp(500, function() {
                 $("#alert").slideUp(500);
                 $('#alert').empty()
             })
@@ -84,17 +84,31 @@ function generate() {
             method: 'GET',
             url: `${localhost}/meme`
         }).done(response => {
-            console.log(response.memedata)
+            console.log(response.data)
             $('#meme').empty()
-            $('#meme').append(` <img src="${response.memedata.url}"> `)
+            $('#meme').append(` <img src="${response.data.url}"> `)
         })
         $.ajax({
             method: 'GET',
-            url: `${localhost}/recipe/1`
+            url: `${localhost}/recipe`
         }).done(response => {
             console.log(response.data)
             $('#recipe').empty()
-            $('#recipe').append(` ${response.data}`)
+            $('#recipe').append(` ${response.data.title}`)
+            $('#recipe-img').append(` <img src="${response.data.thumbnail}">`)
+            $('#recipe-ingredients').append(` ${response.data.ingredients}`)
+
+        })
+        $.ajax({
+            method: 'GET',
+            url: `${localhost}/music`
+        }).done(response => {
+            console.log(response.data)
+            $('#music').empty()
+            $('#music').append(` ${response.data.title} by: ${response.data.contributors[0].name} `)
+            $('#music-src').append(` <a href="${response.data.preview}">Play</a> <a href="${response.data.link}">Original Source</a> `)
+                // $('#music-preview').append(`  `)
+
         })
         console.log('a')
         console.log('b')
@@ -120,36 +134,36 @@ function onSignIn(googleUser) {
     // console.log("ID Token: " + id_token);
 
     $.ajax({
-        method: "POST",
-        url: `${localhost}/users/googleSign`,
-        headers: {
-            token: id_token
-        }
-    }).done(function(response) {
-        console.log({
-            response: response,
-            msg: "Sent google token to server. Received server token."
+            method: "POST",
+            url: `${localhost}/users/googleSign`,
+            headers: {
+                token: id_token
+            }
+        }).done(function(response) {
+            console.log({
+                response: response,
+                msg: "Sent google token to server. Received server token."
+            })
+            localStorage.setItem("token", response.token)
+            showDashboard()
         })
-        localStorage.setItem("token", response.token)
-        showDashboard()
-    })
-    .fail(function(err) {
-        console.log(err, "<= It's an error on google signin")
-        err.responseJSON.forEach(el => {
-            $('#alert').append(`${el}<br>`)
-            $('#alert').fadeTo(2000, 500).slideUp(500, function(){
-                $("#alert").slideUp(500);
-                $('#alert').empty()
+        .fail(function(err) {
+            console.log(err, "<= It's an error on google signin")
+            err.responseJSON.forEach(el => {
+                $('#alert').append(`${el}<br>`)
+                $('#alert').fadeTo(2000, 500).slideUp(500, function() {
+                    $("#alert").slideUp(500);
+                    $('#alert').empty()
+                })
             })
         })
-    })
 }
 
 function logout(event) {
     event.preventDefault()
     var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
+    auth2.signOut().then(function() {
+        console.log('User signed out.');
     });
 
     localStorage.clear()
@@ -160,10 +174,9 @@ $(document).ready(function() {
     $('#alert').hide()
     $('#success').hide()
     let token = localStorage.getItem('token')
-    if(!token) { 
+    if (!token) {
         showLandingPage()
-    }
-    else {
+    } else {
         showDashboard()
     }
 
