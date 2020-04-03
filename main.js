@@ -11,6 +11,7 @@ function login(event) {
         }
     }).done(response => {
         localStorage.setItem('token', response.access_token)
+        showDashboard()
     })
     .fail(function(err) {
         console.log(err, 'it is an error')
@@ -82,19 +83,42 @@ function generate() {
     $('#generated').show(function() {
         $.ajax({
             method: 'GET',
-            url: `${localhost}/meme`
+            url: `${localhost}/music`,
+            headers: {
+                access_token: localStorage.getItem('token')
+            }
         }).done(response => {
-            console.log(response.memedata)
-            $('#meme').empty()
-            $('#meme').append(` <img src="${response.memedata.url}"> `)
+            console.log(response.data)
+            $('#music').empty()
+            $('#music').append(response.data)
+        }).fail(err => {
+            console.log(err)
         })
         $.ajax({
             method: 'GET',
-            url: `${localhost}/recipe/1`
+            url: `${localhost}/meme`,
+            headers: {
+                access_token: localStorage.getItem('token')
+            }
+        }).done(response => {
+            console.log(response.data)
+            $('#meme').empty()
+            $('#meme').append(` <img src="${response.data.url}"> `)
+        }).fail(err => {
+            console.log(err)
+        })
+        $.ajax({
+            method: 'GET',
+            url: `${localhost}/recipe/1`,
+            headers: {
+                access_token: localStorage.getItem('token')
+            }
         }).done(response => {
             console.log(response.data)
             $('#recipe').empty()
             $('#recipe').append(` ${response.data}`)
+        }).fail(err => {
+            console.log(err)
         })
         console.log('a')
         console.log('b')
@@ -135,13 +159,12 @@ function onSignIn(googleUser) {
     })
     .fail(function(err) {
         console.log(err, "<= It's an error on google signin")
-        err.responseJSON.forEach(el => {
-            $('#alert').append(`${el}<br>`)
+        
+            $('#alert').append(err.responseJSON)
             $('#alert').fadeTo(2000, 500).slideUp(500, function(){
                 $("#alert").slideUp(500);
                 $('#alert').empty()
             })
-        })
     })
 }
 
