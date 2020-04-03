@@ -70,9 +70,9 @@
               </button>
               <div class="collapsible-body">
                 <ul class="inline">
-                  <li><a onclick="showFav()">Favorites</a></li>
-                  <li><a onclick="generate()">Generate again!</a></li>
-                  <li><a href="#">Logout</a></li>
+                  <li><a onclick="showFav()" href="#">Favorites</a></li>
+                  <li><a onclick="generate()" href="#">Generate again!</a></li>
+                  <li><a onclick="logout(event)" href="#">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -84,7 +84,10 @@
                 <p>Fav 3</p>
             </div>
             <div id="generated">
-
+                <div id="meme"></div>
+                <p id="reddit"></p>
+                <h4>Still bored? Try this recipe:</h4>
+                <p id="recipe"></p>
             </div>
             <div id="generator">
                 <button class="btn-alert">Generate recommendations!</button>
