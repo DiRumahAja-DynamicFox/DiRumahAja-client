@@ -11,8 +11,6 @@ function login(event) {
             }
         }).done(response => {
             localStorage.setItem('token', response.access_token)
-            $('#email-login').resety()
-            $(`#email-register`).reset()
             showDashboard()
         })
         .fail(function(err) {
@@ -43,8 +41,6 @@ function register(event) {
             $("#success").slideUp(500);
             $('#success').empty()
         })
-        $('#email-login').reset()
-        $(`#email-register`).reset()
         showLandingPage()
     }).fail(function(err) {
         console.log(err, 'it is an error')
