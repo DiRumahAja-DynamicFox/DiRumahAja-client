@@ -94,6 +94,9 @@ function generate() {
         }).done(response => {
             console.log(response.data)
             $('#recipe').empty()
+            $('#recipe-img').empty()
+            $('#recipe-ingredients').empty()
+
             $('#recipe').append(` ${response.data.title}`)
             $('#recipe-img').append(` <img src="${response.data.thumbnail}">`)
             $('#recipe-ingredients').append(` ${response.data.ingredients}`)
@@ -105,6 +108,7 @@ function generate() {
         }).done(response => {
             console.log(response.data)
             $('#music').empty()
+            $('#music-src').empty()
             $('#music').append(` ${response.data.title} by: ${response.data.contributors[0].name} `)
             $('#music-src').append(` <a href="${response.data.preview}">Play</a> <a href="${response.data.link}">Original Source</a> `)
                 // $('#music-preview').append(`  `)
